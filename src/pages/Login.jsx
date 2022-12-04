@@ -11,7 +11,7 @@ const Login = () => {
                     className='px-2 py-1 border-black text-sm border-[1px] mb-10 w-3/4'/> 
                     <input type='password' placeholder='Password' name='password' 
                     className='px-2 py-1 border-black text-sm border-[1px] mb-10 w-3/4'/>
-                    <div className='flex justify-around pb-5 mb-10'>
+                    <div className='flex justify-around pb-5 mb-8'>
                         <div>
                             <input type='checkbox' value='remember' nae='remember' />
                             <label className='pl-2 text-sm'>Remember Me</label>
