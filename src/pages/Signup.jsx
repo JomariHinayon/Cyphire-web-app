@@ -13,22 +13,22 @@ const Signup = () => {
 
 	const addUser = () => {
 		console.log("added user")
-		// axios.post("http://localhost:3001/signup", {
-		// 	firstname: firstname,
-		// 	lastname: lastname,
-		// 	usernane: username,
-		// 	email: email,
-		// 	password: password
-		// }).then(() => {
-		// 	console.log("User successfully added.")
-		// })
+		axios.post("http://localhost:3001/create", {
+			firstname: firstname,
+			lastname: lastname,
+			username: username,
+			email: email,
+			password: password
+		}).then(() => {
+			console.log("User successfully added.")
+		})
 	}
 
 	return (
 		<section id="signup-section">
 			<div className="flex justify-center text-center">
 				<div className="w-[80vh] ">
-					<form method="POST">
+					<form method="post" action='/'>
 						<h1 className="text-2xl font-black mx-10 mt-5 mb-10 ">Sign Up</h1>
 						<input
 							type="text"
