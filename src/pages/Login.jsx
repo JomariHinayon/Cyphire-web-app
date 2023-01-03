@@ -1,17 +1,18 @@
 import axios from "axios";
 import {React, useState} from "react";
-import {useNavigate} from 'react-router-dom';
+import {useNavigate, Navigate} from 'react-router-dom';
 
 const Login = () => {
   const [email, setEmail] = useState("hinayonjomari@gmail.com");
   const [password, setPassword] = useState("pass123");
-//   const [loginSuccess, setLoginSuccess] = useState(false)
+  const navigate = useNavigate()
 
   const checkUser = (event) => {
+
     event.preventDefault();
 
-    // console.log(email)
-    // console.log(password)
+    console.log(email)
+    console.log(password)
     axios
       .post("http://localhost:3001/login", {
         email: email,
@@ -20,13 +21,9 @@ const Login = () => {
       })
       .then(() => {
         console.log("User successfull login.");
-        
-        useNavigate('about')
-        // console.log('asd')
-        
+        navigate('/browse')
       });
-
-
+  
     
   };
 
