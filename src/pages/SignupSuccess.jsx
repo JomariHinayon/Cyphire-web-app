@@ -2,7 +2,9 @@ import React from 'react'
 
 const SignupSuccess = () => {
   return (
-    <div>SignupSuccess</div>
+    <div className=''>
+        
+    </div>
   )
 }
 
