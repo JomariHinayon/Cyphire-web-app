@@ -7,12 +7,12 @@ const Login = () => {
   const [password, setPassword] = useState("pass123");
   const navigate = useNavigate()
 
-  const checkUser = (event) => {
+  const handleLogin = (event) => {
 
     event.preventDefault();
 
-    console.log(email)
-    console.log(password)
+    // console.log(email)
+    // console.log(password)
     axios
       .post("http://localhost:3001/login", {
         email: email,
@@ -21,7 +21,7 @@ const Login = () => {
       })
       .then(() => {
         console.log("User successfull login.");
-        navigate('/browse')
+        navigate('/userprofile', {state:{email: email}})
       });
   
     
@@ -31,7 +31,7 @@ const Login = () => {
     <section id="login-section">
       <div className="flex justify-center text-center">
         <div className="w-[80vh] ">
-          <form onSubmit={checkUser}>
+          <form onSubmit={handleLogin}>
             <h1 className="text-2xl font-black mx-10 mt-5 mb-10 ">
               Welcome Back!
             </h1>

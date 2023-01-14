@@ -4,7 +4,8 @@ import { Outlet } from "react-router-dom";
 const Layout = () => {
   return (
    <>
-    <Navbar />
+    <Navbar username="Jomari" />
+    <h1>asdasd</h1>
     <Outlet />
    </> 
   )

@@ -20,7 +20,7 @@ const Signup = () => {
     // console.log("Sign up button click!");
 
     axios
-      .post("http://localhost:3001/create", {
+      .post("http://localhost:3001/register", {
         firstname: firstname,
         lastname: lastname,
         username: username,

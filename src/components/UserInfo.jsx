@@ -1,9 +1,17 @@
 import React from "react"
 import { useState } from "react"
 import DefaultImage from "../assets/user-default.png"
+import { useNavigate } from "react-router-dom"
 
-const UserInfo = ({username, firstname, lastname}) => {
+const UserInfo = ({email, username, firstname, lastname }) => {
 	const [stars, setStars] = useState([1, 2, 3, 4, 5])
+	const navigate = useNavigate()
+
+	const userProfileClick = () => {
+		event.preventDefault();
+
+		navigate('/userprofile', {state:{email: email, isVisiting: true}})
+	}
 
 	return (
 		<>
@@ -11,14 +19,23 @@ const UserInfo = ({username, firstname, lastname}) => {
 				<div className="flex flex-row">
 					{/* Profice Picture */}
 					<div className="flex place-items-start">
-						<img
-							src={DefaultImage}
-							width="200"
-						/>
+						<a href="#" onClick={userProfileClick}>
+							<img
+								src={DefaultImage}
+								width="200"
+								className="rounded-full"
+							/>
+						</a>
 					</div>
 					{/* User Info */}
 					<div className=" pl-3 flex flex-col">
-						<h1 className="text-2xl font-semibold">{username}</h1>
+						<a
+							className="text-2xl font-semibold hover:text-orange-400"
+							href="#"
+							onClick={userProfileClick}
+						>
+							{username}
+						</a>
 						<div className="flex felx-row">
 							<h4 className="pr-2">{firstname}</h4>
 							<h4 className="pr-2">{lastname}</h4>
@@ -33,6 +50,7 @@ const UserInfo = ({username, firstname, lastname}) => {
 									strokeWidth="1.5"
 									stroke="currentColor"
 									className="w-6 h-6"
+									key={key}
 								>
 									<path
 										strokeLinecap="round"

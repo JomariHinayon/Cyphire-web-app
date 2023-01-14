@@ -82,13 +82,14 @@ const Browse = () => {
 						{userList.map((val, key) => {
 							return (
 								<UserInfo
+									key={val.id}
 									username={val.username}
 									firstname={val.firstname}
 									lastname={val.lastname}
+									email={val.email}
 								/>
 							)
 						})}
-
 					</div>
 				</div>
 				{/* END: HERO SECTION */}
