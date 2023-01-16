@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import ModalSuccess from "../components/ModalSuccess";
 
-
 const Signup = () => {
   const [firstname, setFirstname] = useState("");
   const [lastname, setLastname] = useState("");
@@ -12,8 +11,9 @@ const Signup = () => {
   const [password, setPassword] = useState("");
   const [conpassword, setConpassword] = useState("");
   const [eula, setEula] = useState(false);
+  const [registerErrorMsg, setRegisterErrorMsg] = useState("");
+  const [registerError, setRegisterError] = useState(false);
   const [modalState, setModalState] = useState(false);
-
 
   const addUser = (event) => {
     event.preventDefault();
@@ -39,16 +39,32 @@ const Signup = () => {
         setConpassword("");
         setEula(false);
 
-		    setModalState(true)
+        setModalState(true);
+      })
+      .catch((error) => {
+        console.log(error.response.data);
+        console.log(error.response.status);
+        // console.log(error.response.headers);
+        if (error.response.status == 422) {
+          setRegisterError(true);
+          setRegisterErrorMsg(error.response.data);
+        }
       });
   };
 
   return (
     <section id="signup-section">
       <div className="flex justify-center text-center">
-        <div className="w-[80vh] ">
+        <div className="w-[80vh] flex flex-col items-center">
+          <h1 className="text-2xl font-black mx-10 mt-5 mb-10 ">Sign Up</h1>
+          {/* Login error */}
+          {registerError && (
+            <div className="w-1/2 py-2 my-2 bg-red-500 text-white">
+              <p>{registerErrorMsg}</p>
+            </div>
+          )}
+
           <form method="POST" onSubmit={addUser}>
-            <h1 className="text-2xl font-black mx-10 mt-5 mb-10 ">Sign Up</h1>
             <input
               type="text"
               placeholder="Firstname"
@@ -137,9 +153,9 @@ const Signup = () => {
             >
               Sign Up
             </button>
-			{/* ------------ MODAL ------------- */}
-				  {/* <ModalSuccess modalState={modalState}/> */}
-			{/* ------------ MODAL ------------- */}
+            {/* ------------ MODAL ------------- */}
+            {/* <ModalSuccess modalState={modalState}/> */}
+            {/* ------------ MODAL ------------- */}
           </form>
           <hr className="border-black border-[1px] w-3/4 mx-14 mb-2" />
           <p className="text-[0.8rem] font-semibold">

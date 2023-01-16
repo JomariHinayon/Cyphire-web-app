@@ -1,49 +1,84 @@
 import axios from "axios";
-import {React, useState} from "react";
-import {useNavigate, Navigate} from 'react-router-dom';
+import { React, useState, useRef, useEffect } from "react";
+import { useNavigate, Navigate } from "react-router-dom";
 
 const Login = () => {
+  const navigate = useNavigate();
+  const userRef = useRef()
+  const errRef = useRef()
+
+  // hinayonjomari@gmail.com
   const [email, setEmail] = useState("hinayonjomari@gmail.com");
   const [password, setPassword] = useState("pass123");
-  const navigate = useNavigate()
+  const [loginErrorMsg, setLoginErrMsg] = useState("");
+  const [loginError, setLoginError] = useState(false);
+
+  useEffect( () => {
+    userRef.current.focus();
+  }, [])
+
+  useEffect( () => {
+    setLoginError(false)
+  }, [email, password])
 
   const handleLogin = (event) => {
-
     event.preventDefault();
 
     // console.log(email)
     // console.log(password)
-    axios
+    try {
+      axios
       .post("http://localhost:3001/login", {
         email: email,
         password: password,
-
       })
-      .then(() => {
-        console.log("User successfull login.");
-        navigate('/userprofile', {state:{email: email}})
+      .then((response) => {
+        console.log(response);
+        // console.log("User successfull login.");
+        navigate("/userprofile", { state: { email: email } });
+      })
+      .catch(function (error) {
+        if (error.response) {
+          if (error.response.status == 422) {
+            setLoginError(true);
+            setLoginErrMsg(error.response.data);
+          }
+          // console.log(error.response.data);
+          // console.log(error.response.status);
+          // console.log(error.response.headers);
+        }
       });
-  
-    
+    } catch (err) {
+      console.log("ERROR!" + err)
+    }
   };
 
   return (
     <section id="login-section">
       <div className="flex justify-center text-center">
-        <div className="w-[80vh] ">
+        <div className="w-[80vh] flex flex-col items-center">
+          <h1 className="text-2xl font-black mx-10 mt-5 mb-10 ">
+            Welcome Back!
+          </h1>
+          {/* Login error */}
+          {loginError && (
+            <div className="w-1/2 py-2 my-2 bg-red-500 text-white">
+              <p>{loginErrorMsg}</p>
+            </div>
+          )}
+
           <form onSubmit={handleLogin}>
-            <h1 className="text-2xl font-black mx-10 mt-5 mb-10 ">
-              Welcome Back!
-            </h1>
             <input
               type="text"
               placeholder="Email or Username"
               value={email}
               name="username"
+              ref={userRef}
               className="px-2 py-1 border-black text-sm border-[1px] mb-10 w-3/4"
               onChange={(event) => {
                 setEmail(event.target.value);
               }}
+              required
             />
             <input
               type="password"
@@ -54,6 +89,7 @@ const Login = () => {
               onChange={(event) => {
                 setPassword(event.target.value);
               }}
+              required
             />
             <div className="flex justify-around pb-5 mb-8">
               <div>

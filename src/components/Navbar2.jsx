@@ -42,9 +42,17 @@ const Navbar2 = ({username}) => {
 							</Link>
 						</li>
 						<li className="">
+							<Link
+								className="focus:bg-black focus:text-white p-2"
+								to="/userprofile"
+							>
+								Profile
+							</Link>
+						</li>
+						{/* <li className="">
 							<p>Hello, </p>
 							<a>{username}</a>
-						</li>
+						</li> */}
 					</ul>
 				</div>
 			</div>

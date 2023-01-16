@@ -5,7 +5,6 @@ const Layout = () => {
   return (
    <>
     <Navbar username="Jomari" />
-    <h1>asdasd</h1>
     <Outlet />
    </> 
   )

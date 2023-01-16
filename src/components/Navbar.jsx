@@ -13,16 +13,16 @@ const Navbar = () => {
         </div>
         <div className='w-1/2'>
           <ul className='flex flex-rows gap-10 text-lg'>
-            <li className=''>
+            <li className='text-[1rem] '>
               <Link className='focus:bg-black focus:text-white p-2' to="/">HOME</Link>
             </li>
-            <li className=''>
+            <li className='text-[1rem] '>
               <Link className='focus:bg-black focus:text-white p-2' to="about">ABOUT US</Link>
             </li>
-            <li className=''>
+            <li className='text-[1rem] '>
               <Link className='focus:bg-black focus:text-white p-2' to="login">LOG IN</Link>
             </li>
-            <li className=''>
+            <li className='text-[1rem] bg-orange-600 text-white'>
               <Link className='focus:bg-black focus:text-white p-2' to="signup">SIGN UP</Link>
             </li>
           </ul>
