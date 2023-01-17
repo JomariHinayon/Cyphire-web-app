@@ -35,7 +35,7 @@ const Hero = () => {
           <div className="w-[542px] pl-24 flex flex-row right-side absolute self-start top-[-4rem] left-0">
             <img src={MainImage} alt="programming" className="rounded-full " />
           </div>
-          <div className="left-side grid grid-cols-4 w-[43rem]">
+          <div className="left-side grid grid-cols-4 w-[53rem]">
             <div className="w-20">
               <h1 className="text-white text-5xl font-extrabold pb-5">
                 JUST ONE <span className="text-orange-600">CLICK</span>
