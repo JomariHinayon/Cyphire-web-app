@@ -2,7 +2,6 @@ import React from "react";
 import Hero from "../components/home/Hero";
 import Services from "../components/home/Services";
 import SampleProjects from "../components/home/SampleProjects";
-import Footer from "../components/Footer";
 
 const Welcome = () => {
   return (
@@ -11,7 +10,6 @@ const Welcome = () => {
         <Hero />
         <SampleProjects />
         <Services />
-        <Footer />
       </div>
     </>
   );

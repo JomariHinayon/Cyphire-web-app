@@ -11,7 +11,7 @@ import Card from "./TeamCard";
 const TheTeam = () => {
   return (
     <section id="team-section">
-      <div className=" flex flex-col container mx-auto">
+      <div className=" flex flex-col container mx-auto pb-10">
         <div className="flex flex-col self-center items-center py-5 w-60">
           <h1 className="text-4xl font-semibold pb-2">Our Team</h1>
           <hr className="border-orange-600 border-2 w-1/2 " />

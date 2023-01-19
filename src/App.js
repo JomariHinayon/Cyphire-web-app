@@ -10,7 +10,8 @@ import Tutorials from './pages/Tutorial'
 import AskCommunity from './pages/AskCommunity'
 import Layout2 from './pages/Layout2';
 import UserProfile from './pages/UserProfile'
-import UserInfo from './components/UserInfo'
+import UserInfo from './components/UserInfo' 
+import AskQuestion from './pages/AskQuestion';
 
 function App() {
   return (
@@ -31,6 +32,7 @@ function App() {
           <Route path='askcommunity' element={<AskCommunity />} />
           <Route path='userprofile' element={<UserProfile />} />
           <Route path='userinfo' element={<UserInfo />} />
+          <Route path='askquestion' element={<AskQuestion />} />
         </Route>
       </Routes>
      </BrowserRouter>

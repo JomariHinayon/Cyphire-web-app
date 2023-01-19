@@ -1,11 +1,12 @@
 import axios from "axios";
 import { React, useState, useRef, useEffect } from "react";
 import { useNavigate, Navigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const Login = () => {
   const navigate = useNavigate();
-  const userRef = useRef()
-  const errRef = useRef()
+  const userRef = useRef();
+  const errRef = useRef();
 
   // hinayonjomari@gmail.com
   const [email, setEmail] = useState("hinayonjomari@gmail.com");
@@ -13,13 +14,13 @@ const Login = () => {
   const [loginErrorMsg, setLoginErrMsg] = useState("");
   const [loginError, setLoginError] = useState(false);
 
-  useEffect( () => {
+  useEffect(() => {
     userRef.current.focus();
-  }, [])
+  }, []);
 
-  useEffect( () => {
-    setLoginError(false)
-  }, [email, password])
+  useEffect(() => {
+    setLoginError(false);
+  }, [email, password]);
 
   const handleLogin = (event) => {
     event.preventDefault();
@@ -28,34 +29,34 @@ const Login = () => {
     // console.log(password)
     try {
       axios
-      .post("http://localhost:3001/login", {
-        email: email,
-        password: password,
-      })
-      .then((response) => {
-        console.log(response);
-        // console.log("User successfull login.");
-        navigate("/userprofile", { state: { email: email } });
-      })
-      .catch(function (error) {
-        if (error.response) {
-          if (error.response.status == 422) {
-            setLoginError(true);
-            setLoginErrMsg(error.response.data);
+        .post("http://localhost:3001/login", {
+          email: email,
+          password: password,
+        })
+        .then((response) => {
+          console.log(response);
+          // console.log("User successfull login.");
+          navigate("/userprofile", { state: { email: email } });
+        })
+        .catch(function (error) {
+          if (error.response) {
+            if (error.response.status == 422) {
+              setLoginError(true);
+              setLoginErrMsg(error.response.data);
+            }
+            // console.log(error.response.data);
+            // console.log(error.response.status);
+            // console.log(error.response.headers);
           }
-          // console.log(error.response.data);
-          // console.log(error.response.status);
-          // console.log(error.response.headers);
-        }
-      });
+        });
     } catch (err) {
-      console.log("ERROR!" + err)
+      console.log("ERROR!" + err);
     }
   };
 
   return (
     <section id="login-section">
-      <div className="flex justify-center text-center">
+      <div className="flex justify-center text-center h-[72vh]">
         <div className="w-[80vh] flex flex-col items-center">
           <h1 className="text-2xl font-black mx-10 mt-5 mb-10 ">
             Welcome Back!
@@ -113,7 +114,11 @@ const Login = () => {
           <hr className="border-black border-[1px] w-3/4 mx-14 mb-2" />
           <p className="text-[0.8rem] font-semibold">
             Don't have an account?
-            <span className="ml-2 text-orange-600">Sign Up</span>
+            <span className="">
+              <Link className="ml-2 text-orange-600" to="/signup">
+                Sign up
+              </Link>
+            </span>
           </p>
         </div>
       </div>

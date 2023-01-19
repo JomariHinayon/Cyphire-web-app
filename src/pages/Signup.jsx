@@ -129,7 +129,7 @@ const Signup = () => {
               <div>
                 <input
                   type="checkbox"
-                  value={eula}
+                  value={eula && !registerError}
                   name="eula"
                   onChange={(event) => {
                     setEula(event.target.value);
@@ -150,6 +150,7 @@ const Signup = () => {
             <button
               className="bg-orange-500 py-1 w-3/4 text-white text-xl font-bold mb-8"
               type="submit"
+              disabled={!eula }
             >
               Sign Up
             </button>
@@ -161,7 +162,7 @@ const Signup = () => {
           <p className="text-[0.8rem] font-semibold">
             Aready have an account?
             <span className="ml-2 text-orange-600">
-              <Link to="signup">Login</Link>
+              <Link to="/login">Login</Link>
             </span>
           </p>
         </div>

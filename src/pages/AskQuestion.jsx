@@ -1,15 +1,10 @@
 import React from "react";
 import Search from "../components/SearchContainer";
-import Question from "../components/askcommunity/Question";
-import { useNavigate } from "react-router-dom";
+import Box from "@mui/material/Box";
+import TextField from "@mui/material/TextField";
+import Button from "@mui/material/Button";
 
-const AskCommunity = () => {
-  const navigate = useNavigate();
-
-  const handleAsk = () => {
-    navigate("/askquestion");
-  };
-
+const AskQuestion = () => {
   return (
     <>
       <Search text="Ask a Question" />
@@ -47,20 +42,43 @@ const AskCommunity = () => {
             </select>
           </div>
         </div>
-        {/* RIGHT CONTAINER */}
-        <div className="right-container p-8 flex flex-col">
-          <button
-            className="bg-red-500 p-2 font-semibold text-white mb-10 self-center"
-            onClick={handleAsk}
-          >
-            Ask Question
-          </button>
-          <Question />
-          <Question />
-        </div>
+        {/* RIGHT CONTAIER */}
+        <Box
+          component="form"
+          sx={{
+            "& .MuiTextField-root": { m: 1, width: "25ch" },
+            maxWidth: '100%',
+          }}
+          noValidate
+          autoComplete="off"
+          className="flex flex-col w-full"
+          padding={3}
+        >
+          <TextField
+            id="outlined-password-input"
+            label="Username"
+            type="text"
+            sx={{ width: "" }}
+          />
+          <TextField
+            fullWidth
+            id="fullWidth"
+            label="Full Name"
+            type="text"
+          />  
+          <TextField
+            id="filled-multiline-static"
+            label="Question"
+            multiline
+            rows={7}
+            //   defaultValue="Enter question here"
+            variant="filled"
+          />
+          <Button variant="contained" className="w-32">Submit</Button>
+        </Box>
       </div>
     </>
   );
 };
 
-export default AskCommunity;
+export default AskQuestion;
